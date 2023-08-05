@@ -8,7 +8,7 @@ class ProductManager {
   addProduct = async (product) => {
     const products = JSON.parse(await fs.readFile(this.path, "utf-8"));
 
-    if (products.find((producto) => producto.id == product.id)) {
+    if (products.find((producto) => producto.id === product.id)) {
       console.log("Producto ya agregado");
       return;
     }
@@ -31,14 +31,14 @@ class ProductManager {
 
   getProducts = async () => {
     const products = JSON.parse(await fs.readFile(this.path, "utf-8"));
-    console.log(products);
+    return products;
   };
 
   getProductById = async (id) => {
     const products = JSON.parse(await fs.readFile(this.path, "utf-8"));
     const prod = products.find((producto) => producto.id === id);
     if (prod) {
-      console.log(prod);
+      return prod;
     } else {
       console.log("Not found");
     }
@@ -106,12 +106,22 @@ const product2 = new Product(
   150
 );
 
+const product3 = new Product(
+  "producto3",
+  "chicles sabor menta",
+  200,
+  "imagen no disponible",
+  301,
+  10
+);
+
 const productManager = new ProductManager();
 
 productManager.getProducts();
 
-//productManager.addProduct(product1);
-//productManager.addProduct(product2);
+productManager.addProduct(product1);
+productManager.addProduct(product2);
+productManager.addProduct(product3);
 
 //productManager.getProductById(1);
 //productManager.getProductById(7);
