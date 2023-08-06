@@ -73,18 +73,18 @@ class ProductManager {
 }
 
 class Product {
+  static incrementId = 0;
+
   constructor(title, description, price, thumbnail, code, stock) {
+    Product.incrementId++;
+
     this.title = title;
     this.description = description;
     this.price = price;
     this.thumbnail = thumbnail;
     this.code = code;
     this.stock = stock;
-    this.id = Product.incrementID();
-  }
-  static incrementID() {
-    this.idIncrement = this.idIncrement ? this.idIncrement + 1 : 1;
-    return this.idIncrement;
+    this.id = Product.incrementId;
   }
 }
 
@@ -119,9 +119,9 @@ const productManager = new ProductManager();
 
 productManager.getProducts();
 
-productManager.addProduct(product1);
-productManager.addProduct(product2);
-productManager.addProduct(product3);
+//productManager.addProduct(product1);
+//productManager.addProduct(product2);
+//productManager.addProduct(product3);
 
 //productManager.getProductById(1);
 //productManager.getProductById(7);
